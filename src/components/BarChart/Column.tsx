@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { BarChartColumnProps } from 'types';
+import { BarChartColumnProps } from '@/types';
 
 interface PercentageProps {
 	[index: number]: string;
@@ -26,20 +26,22 @@ const Column = ({ rows, grouped = false, barWidth, percent = 0, color = 'tomato'
 
 	const iterator = new Array(rows).fill(Math.random());
 	useEffect(() => {
+
 		if (grouped) {
 			if (!(percent instanceof Array) || !(color instanceof Array)) {
-				console.log('wrong arg format');
+				console.log(!(percent instanceof Array) ? 'percent' : 'color' + 'wrong arg format');
 				return;
 			}
 			setPercentage([(percent[0] / dataMax) * 100, (percent[1] / dataMax) * 100]);
 		} else {
 			if (percent instanceof Array || color instanceof Array) {
-				console.log('wrong arg format');
+				console.log(!(percent instanceof Array) ? 'percent' : 'color' +'wrong arg format');
 				return;
 			}
 			setPercentage(percent);
 		}
 	}, []);
+
 
 	return (
 		<Container>
@@ -60,7 +62,7 @@ const Column = ({ rows, grouped = false, barWidth, percent = 0, color = 'tomato'
 					color={!grouped ? (color as string) : color[0]}
 				/>
 				{grouped && percentage instanceof Array ? (
-					<Percentage percent={percentage[0]} width={barWidth} grouped={grouped} color={color[1]} />
+					<Percentage percent={percentage[1]} width={barWidth} grouped={grouped} color={color[1]} />
 				) : null}
 			</PercentGroup>
 		</Container>
@@ -104,7 +106,7 @@ const Percentage = styled.div<PercentageProps>`
 	transform-origin: bottom center;
 	transition: transform 1s ease-in-out;
 	${({ percent }) => ({ transform: `scaleY(${percent || 0}%)` })};
-	${({ width, grouped }) => (grouped ? { width: width || '35%' } : { width: width || '50%' })};
+	${({ width, grouped }) => (grouped ? { width: `${width || '35%'}` } : { width: width || '50%' })};
 	height: 100%;
 	border-top-left-radius: 2px;
 	border-top-right-radius: 2px;

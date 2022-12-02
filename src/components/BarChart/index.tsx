@@ -2,15 +2,13 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Chart from './Chart';
 import Heading from '@/components/Basic/Typography/Heading';
-import { BarChartDataType, BarChartProps } from '@/types';
-const mockData: BarChartDataType = [46, 32, 8, 14, 28];
+import { BarChartProps } from '@/types';
 const mockYLabel = '%';
 
 /**
  *
  * @param {ChartData} data - default For De
  * @param {number} rowCount - number of rows , (default = 5)
- * @param {[...string]} xLabel - x-axis Label
  * @param { string | [...number]} yLabel - y-axis Label unit
  * @param {CSSObject} [labelStyle] - style objects apply to labels
  * @param {string} [fontSize] - size of font
@@ -23,20 +21,18 @@ const mockYLabel = '%';
  */
 
 const BarChart = ({
-	data = mockData,
-	xLabel,
+	data,
 	yLabelUnit = mockYLabel,
 	rowCount,
 	grouped,
 	color,
 	legendTag,
-	showLegend
+	showLegend,
 }: BarChartProps) => {
 	return (
 		<Container>
 			<Chart
 				data={data}
-				xLabel={xLabel}
 				yLabelUnit={yLabelUnit}
 				rowCount={rowCount}
 				grouped={grouped}

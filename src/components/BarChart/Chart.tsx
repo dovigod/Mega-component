@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Column from './Column';
-import { ChartProps } from '@/types';
+import { ChartProps , BarChartDataType } from '@/types';
 import Heading from '@/components/Basic/Typography/Heading';
 
 interface XLabelProps {
@@ -14,10 +14,8 @@ interface YLabelProps {
 }
 /**
  *
- * @param {ChartData} data - default For De
+ * @param {BarChartDataType[]} data
  * @param {number} rowCount - number of rows , (default = 5)
- * @param {[...string]} xLabel - x-axis Label
- * @param { string | [...number]} yLabel - y-axis Label unit
  * @param {CSSObject} [labelStyle] - style objects apply to labels
  * @param {string} [fontSize] - size of font
  * @param {number} [rowCount] - (!important) if type of yLabel is string, must set value of this
@@ -26,8 +24,6 @@ interface YLabelProps {
  */
 const Chart = ({
 	data,
-	xLabel,
-	yLabel,
 	labelStyle,
 	yLabelSpacing,
 	xLabelSpacing,
@@ -35,39 +31,10 @@ const Chart = ({
 	rowCount = 5,
 	grouped,
 	yLabelUnit = '%',
-	color
+	color,
 }: ChartProps) => {
-	let dataMax = 0;
-	if (data[0] instanceof Array) {
-		const tmp = [];
-
-		for (const d of data) {
-			const t = d as Array<number>;
-			tmp.push(...t);
-		}
-		dataMax = Math.ceil(Math.max(...tmp));
-	} else {
-		const t = data as Array<number>;
-		dataMax = Math.ceil(Math.max(...t));
-	}
-	const amountPerBox = dataMax / rowCount;
-
-	let yLab: any = yLabel;
-	if (yLab instanceof Array) {
-		yLab.sort((a, b) => 0 - (a > b ? 1 : -1));
-	}
-
-	if (typeof yLab === 'undefined') {
-		yLab = [dataMax];
-
-		for (let i = 0; i < data.length - 1; i++) {
-			yLab.push(Math.ceil(yLab[yLab.length - 1] - amountPerBox));
-		}
-		yLab.push(0);
-	}
-
-	// logics ..ing for classificating datas..
-	//
+	const dataMax = getMaxData(data)
+	const yLab = generateYlabelValue(dataMax , rowCount);
 
 	return (
 		<Container>
@@ -75,9 +42,9 @@ const Chart = ({
 				if (grouped) {
 					return (
 						<Column
-							key={'barchart-column' + idx}
+							key={'barchart-column' + idx + item}
 							rows={rowCount}
-							percent={item}
+							percent={item.value}
 							grouped={grouped}
 							color={color}
 							dataMax={dataMax}
@@ -86,9 +53,9 @@ const Chart = ({
 				} else {
 					return (
 						<Column
-							key={'barchart-column' + idx}
+							key={'barchart-column' + idx + item}
 							rows={rowCount}
-							percent={((item as number) / dataMax) * 100}
+							percent={((item.value as number) / dataMax) * 100}
 							grouped={grouped}
 							color={color}
 							dataMax={dataMax}
@@ -97,30 +64,30 @@ const Chart = ({
 				}
 			})}
 
-			{yLab?.map((item: string, idx: number) => (
+			{yLab?.map((item: number, idx: number) => {
+				return (
 				<Ylabel key={'barchart-y-axis ' + item} top={idx * (1 / rowCount) * 100} yLabelSpacing={yLabelSpacing}>
 					<Heading variant="H9" style={{ ...labelStyle, fontSize: fontSize }}>
 						{item}
 						{yLabelUnit}
 					</Heading>
 				</Ylabel>
-			))}
-			{xLabel
-				? xLabel.map((item, idx) => {
-						console.log(item);
+			)})}
+			{
+				data.map(({label}, idx) => {
 						return (
 							<Xlabel
-								key={'barchart-x-axis ' + item}
-								left={idx * (1 / xLabel.length) * 100 + (0.5 / xLabel.length) * 100}
+								key={'barchart-x-axis ' + label + idx}
+								left={idx * (1 / data.length) * 100 + (0.5 / data.length) * 100}
 								xLabelSpacing={xLabelSpacing}
 							>
 								<Heading variant="H9" style={{ ...labelStyle, fontSize: fontSize }}>
-									{item}
+									{label}
 								</Heading>
 							</Xlabel>
 						);
-				  })
-				: null}
+				})
+			}
 		</Container>
 	);
 };
@@ -149,3 +116,52 @@ const Xlabel = styled.div<XLabelProps>`
 	left: ${({ xLabelSpacing, left }) =>
 		xLabelSpacing ? `calc(${left}% - ${xLabelSpacing})` : `calc(${left}% - 15px)`};
 `;
+
+
+const getMaxData = (data : BarChartDataType[]) => {
+	let dataMax = 0;
+	if (data[0].value instanceof Array) {
+		const tmp = [];
+
+		for (const d of data) {
+			const t = d.value as Array<number>;
+			tmp.push(...t);
+		}
+		dataMax = Math.ceil(Math.max(...tmp));
+	} else {
+		const valueList : number[] = [] 
+		for(const d of data){
+			valueList.push(d.value as number)
+		}
+		dataMax = Math.ceil(Math.max(...valueList));
+	}
+	return dataMax
+}
+
+const generateYlabelValue = (dataMax : number , rowCount : number) => {
+	let yLab = null;
+	let digit = 1
+	let highestMaxDigit = null;
+	while(dataMax % digit !== dataMax){
+		digit *=10;
+	}
+	highestMaxDigit = digit / 10;
+	while(highestMaxDigit !== digit){
+		if(Math.floor(dataMax / highestMaxDigit) === 0){
+			break;
+		}
+		highestMaxDigit = highestMaxDigit + (digit / 10)
+	}
+	dataMax = highestMaxDigit;		
+		
+	const amountPerBox = Number(highestMaxDigit / rowCount);
+	yLab = [highestMaxDigit];
+
+
+
+	for (let i = 0; i < rowCount - 1; i++) {
+		yLab.push(yLab[yLab.length - 1] - amountPerBox);
+	}
+	yLab.push(0);
+	return yLab;
+}

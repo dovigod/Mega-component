@@ -19,13 +19,16 @@ export interface BarChartColumnProps {
 
 export type percentType = number | number[];
 
-export type BarChartDataType = Array<number | number[]>;
+
+
+export interface BarChartDataType{
+	label : string | string[],
+	value : number | number[]
+}
 
 export interface BarChartProps {
-	data: BarChartDataType;
+	data: BarChartDataType[];
 	rowCount?: number;
-	xLabel: string[];
-	yLabel?: string[];
 	labelStyle?: CSSObject;
 	fontSize?: string;
 	yLabelUnit?: string;
@@ -36,10 +39,8 @@ export interface BarChartProps {
 }
 
 export interface ChartProps {
-	data: BarChartDataType;
+	data: BarChartDataType[];
 	rowCount?: number;
-	xLabel: string[];
-	yLabel?: string[];
 	labelStyle?: CSSObject;
 	fontSize?: string;
 	grouped: boolean;
