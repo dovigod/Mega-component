@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Chart from './Chart';
-import Heading from 'components/Basic/Typography/Heading';
-const mockData = [46, 32, 8, 14, 28];
-const mockXLabel = ['10', '20~29', '30~39', '40~49', '50~69', '65+'];
+import Heading from '@/components/Basic/Typography/Heading';
+import { BarChartDataType, BarChartProps } from '@/types';
+const mockData: BarChartDataType = [46, 32, 8, 14, 28];
 const mockYLabel = '%';
 
 /**
@@ -21,29 +21,47 @@ const mockYLabel = '%';
  * @param {string | [string , string]} [legend] - if set, shows legend
  *
  */
+
 const BarChart = ({
 	data = mockData,
-	xLabel = mockXLabel,
-	yLabel = mockYLabel,
-	rows = 5,
+	xLabel,
+	yLabelUnit = mockYLabel,
+	rowCount,
 	grouped,
 	color,
 	legendTag,
 	showLegend
-}) => {
+}: BarChartProps) => {
 	return (
 		<Container>
-			<Chart data={data} xLabel={xLabel} yLabelUnit={yLabel} rowCount={5} grouped={grouped} color={color} />
+			<Chart
+				data={data}
+				xLabel={xLabel}
+				yLabelUnit={yLabelUnit}
+				rowCount={rowCount}
+				grouped={grouped}
+				color={color}
+			/>
 			{showLegend ? (
 				<LegendContainer>
 					<Legend>
-						<ColorMark color={grouped ? color[0] : color} />
-						<Heading variant="SBH7">{grouped ? legendTag[0] : legendTag}</Heading>
+						<ColorMark
+							color={
+								grouped && color instanceof Array
+									? color[0]
+									: color instanceof Array
+									? undefined
+									: color
+							}
+						/>
+						<Heading variant="SBH7">
+							{grouped && legendTag instanceof Array ? legendTag[0] : legendTag}
+						</Heading>
 					</Legend>
 					{grouped ? (
 						<Legend>
 							<ColorMark color={color[1]} />
-							<Heading variant="SBH7">{legendTag[1]}</Heading>
+							<Heading variant="SBH7">{legendTag instanceof Array ? legendTag[1] : null}</Heading>
 						</Legend>
 					) : (
 						<></>
@@ -72,7 +90,7 @@ const Legend = styled.div`
 	margin-right: 21px;
 `;
 
-const ColorMark = styled.div`
+const ColorMark = styled.div<{ color: string | undefined }>`
 	padding: 4px 10px;
 	border-radius: 20px;
 	background-color: ${({ color }) => color};

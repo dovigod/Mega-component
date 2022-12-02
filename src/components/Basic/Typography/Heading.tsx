@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import { HeadingProps } from '../../../../types';
+import { HeadingProps } from '@/types';
 const allowedTagNames = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', 'label'];
 
 /**
@@ -50,7 +50,7 @@ const Heading = ({ variant, as, children, className = '', color, style, margin, 
 			},
 			...rest
 		},
-		<>children</>
+		<>{children}</>
 	);
 };
 
