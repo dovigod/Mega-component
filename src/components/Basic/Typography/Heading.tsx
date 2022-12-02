@@ -34,7 +34,7 @@ const allowedTagNames = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'a', '
  * @param {string} color - color of heading
  * @additional The rest of the props are passed to the underlying component.
  */
-const Heading = ({ variant, as, children, className, color, style, margin, ...rest }: HeadingProps) => {
+const Heading = ({ variant, as, children, className = '', color, style, margin, ...rest }: HeadingProps) => {
 	let tagName = as || variant?.slice(-2)?.toLowerCase();
 	if (!allowedTagNames.includes(tagName)) {
 		tagName = 'p';

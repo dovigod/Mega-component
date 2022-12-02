@@ -1,0 +1,178 @@
+@use '../variables/colors' as *;
+
+@each $color, $shades in $colors {
+	@each $shade, $value in $shades {
+		.text-#{'' + $color}-#{$shade} {
+			color: #{$value};
+		}
+
+		.bg-#{'' + $color}-#{$shade} {
+			background-color: #{$value};
+		}
+
+		.border-#{'' + $color}-#{$shade} {
+			border-color: #{$value};
+		}
+
+		.border-l-#{'' + $color}-#{$shade} {
+			border-left-color: #{$value};
+		}
+
+		.border-r-#{'' + $color}-#{$shade} {
+			border-right-color: #{$value};
+		}
+
+		.border-t-#{'' + $color}-#{$shade} {
+			border-top-color: #{$value};
+		}
+
+		.border-b-#{'' + $color}-#{$shade} {
+			border-bottom-color: #{$value};
+		}
+	}
+}
+
+// white
+.text-white {
+	color: #fff;
+}
+
+.bg-white {
+	background-color: #fff;
+}
+
+// black
+.text-black {
+	color: #000;
+}
+
+.bg-black {
+	background-color: #000;
+}
+
+// inherit
+.text-inherit {
+	color: inherit;
+}
+
+// gradients
+.gradient-violet {
+	background: linear-gradient(96.4deg, #edd6ff 3.84%, #e4e2ff 99.68%);
+}
+
+.gradient-violet-strong {
+	background: linear-gradient(96.4deg, #e8caff 3.84%, #c8c4ff 99.68%);
+}
+
+.gradient-yellow {
+	background: radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+		#ffc543;
+}
+
+.gradient-yellow-hover {
+	background: #ffd068,
+		radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.gradient-yellow-active {
+	background: #ffcd5e,
+		radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.gradient-rainbow {
+	background: linear-gradient(
+		273.28deg,
+		#a1cf72 0.81%,
+		#eed069 21.76%,
+		#9e6fdd 48.62%,
+		#65b3ff 73.42%,
+		#c76bb9 99.99%,
+		rgba(14, 13, 57, 0) 100%
+	);
+}
+
+.gradient-brand-1 {
+	background: linear-gradient(257.64deg, #c833fc 9.01%, #7f00fb 91.14%);
+}
+
+.gradient-brand-2 {
+	background: linear-gradient(270deg, #14bde6 0.13%, #80a2f4 51%, #e274ff 100.26%);
+}
+
+.gradient-brand-3 {
+	background: linear-gradient(270deg, #f2758a 0.26%, #fd9f60 99.7%);
+}
+
+.gradient-evo {
+	background: linear-gradient(257.64deg, #8d79cc 9.01%, #a290f4 91.14%);
+}
+
+:root {
+	@each $color, $shades in $colors {
+		@each $shade, $value in $shades {
+			--color-#{"" + $color}-#{$shade}: #{$value};
+		}
+	}
+	--color-white: #fff;
+	--color-black: #000;
+	--gradient-violet: linear-gradient(96.4deg, #edd6ff 3.84%, #e4e2ff 99.68%);
+	--gradient-violet-strong: linear-gradient(96.4deg, #e8caff 3.84%, #c8c4ff 99.68%);
+	--gradient-yellow: radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+		#ffc543;
+	--gradient-yellow-hover: radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+		#ffd068;
+	--gradient-yellow-active: radial-gradient(
+				63.11% 63.11% at 31.97% 19.67%,
+				rgba(255, 255, 255, 0.7) 0%,
+				rgba(255, 255, 255, 0) 69.79%,
+				rgba(255, 255, 255, 0) 100%
+			)
+			/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+		#ffcd5e;
+	--gradient-rainbow: linear-gradient(
+		273.28deg,
+		#a1cf72 0.81%,
+		#eed069 21.76%,
+		#9e6fdd 48.62%,
+		#65b3ff 73.42%,
+		#c76bb9 99.99%,
+		rgba(14, 13, 57, 0) 100%
+	);
+	--gradient-brand-1: linear-gradient(257.64deg, #c833fc 9.01%, #7f00fb 91.14%);
+	--gradient-brand-2: linear-gradient(270deg, #14bde6 0.13%, #80a2f4 51%, #e274ff 100.26%);
+	--gradient-brand-3: linear-gradient(270deg, #f2758a 0.26%, #fd9f60 99.7%);
+	--gradient-evo: linear-gradient(257.64deg, #8d79cc 9.01%, #a290f4 91.14%);
+
+	--gradient-violet-medium-chars: linear-gradient(96.4deg, #e8caff 3.84%, #c8c4ff 99.68%);
+	--gradient-violet-strong-missions: linear-gradient(65.18deg, #c6c5ff 0%, #c19bea 100%);
+}

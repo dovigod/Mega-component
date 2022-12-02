@@ -1,0 +1,380 @@
+@use '../variables/typography' as *;
+
+@each $family, $value in $font-family {
+	.font-#{$family} {
+		font-family: $value;
+	}
+}
+
+@each $size, $value in $font-sizes {
+	.font-size-#{$size} {
+		font-size: $value;
+	}
+}
+
+@each $spacing, $value in $letter-spacings {
+	.letter-spacing-#{$spacing} {
+		letter-spacing: $value;
+	}
+}
+
+@each $line-height, $value in $line-height {
+	.line-height-#{$line-height} {
+		line-height: $value;
+	}
+}
+
+@each $weight, $value in $font-weights {
+	.font-weight-#{$weight} {
+		font-weight: $value;
+	}
+}
+
+:root {
+	@each $family, $value in $font-family {
+		--font-family-#{$family}: #{$value};
+	}
+	@each $size, $value in $font-sizes {
+		--font-size-#{$size}: #{$value};
+	}
+	@each $spacing, $value in $letter-spacings {
+		--letter-spacing-#{$spacing}: #{$value};
+	}
+	@each $line-height, $value in $line-height {
+		--line-height-#{$line-height}: #{$value};
+	}
+	@each $weight, $value in $font-weights {
+		--font-weight-#{$weight}: #{$value};
+	}
+}
+
+.ebh {
+	@extend .font-weight-800;
+	@extend .font-kumbh-sans;
+	color: var(--color-indigo-500);
+}
+
+.ebh1 {
+	@extend .ebh;
+	@extend .font-size-60;
+	@extend .line-height-1\.3;
+	@extend .letter-spacing-0\.5;
+}
+.ebh2 {
+	@extend .ebh;
+	@extend .font-size-48;
+	@extend .line-height-1\.3;
+	@extend .letter-spacing-0\.5;
+}
+
+.bh {
+	@extend .font-weight-700;
+	@extend .font-kumbh-sans;
+	color: var(--color-indigo-500);
+}
+
+.bh1 {
+	@extend .bh;
+	@extend .font-size-32;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.bh2 {
+	@extend .bh;
+	@extend .font-size-24;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.bh3 {
+	@extend .bh;
+	@extend .font-size-20;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.bh4 {
+	@extend .bh;
+	@extend .font-size-18;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.5;
+}
+
+.bh5 {
+	@extend .bh;
+	@extend .font-size-16;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+
+.bh6 {
+	@extend .bh;
+	@extend .font-size-14;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.bh7 {
+	@extend .bh;
+	@extend .font-size-12;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.bh8 {
+	@extend .bh;
+	@extend .font-size-10;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+.bh9 {
+	@extend .bh;
+	@extend .font-size-8;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.sbh {
+	@extend .font-weight-600;
+	@extend .font-kumbh-sans;
+	color: var(--color-indigo-500);
+}
+
+.sbh1 {
+	@extend .sbh;
+	@extend .font-size-32;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.5;
+}
+
+.sbh2 {
+	@extend .sbh;
+	@extend .font-size-24;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.5;
+}
+
+.sbh3 {
+	@extend .sbh;
+	@extend .font-size-20;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.5;
+}
+
+.sbh4 {
+	@extend .sbh;
+	@extend .font-size-18;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.5;
+}
+
+.sbh5 {
+	@extend .sbh;
+	@extend .font-size-16;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+
+.sbh6 {
+	@extend .sbh;
+	@extend .font-size-14;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+.sbh7 {
+	@extend .sbh;
+	@extend .font-size-12;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+.sbh8 {
+	@extend .sbh;
+	@extend .font-size-10;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+.sbh9 {
+	@extend .sbh;
+	@extend .font-size-8;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.5;
+}
+
+.h {
+	@extend .font-weight-500;
+	@extend .font-kumbh-sans;
+	color: var(--color-indigo-500);
+}
+
+.h1,
+h1 {
+	@extend .h;
+	@extend .font-size-48;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.3;
+}
+
+.h2,
+h2 {
+	@extend .h;
+	@extend .font-size-32;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.h3,
+h3 {
+	@extend .h;
+	@extend .font-size-24;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.h4,
+h4 {
+	@extend .h;
+	@extend .font-size-20;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.4;
+}
+
+.h5,
+h5 {
+	@extend .h;
+	@extend .font-size-18;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.4;
+}
+
+.h6,
+h6 {
+	@extend .h;
+	@extend .font-size-16;
+	@extend .letter-spacing-0\.15;
+	@extend .line-height-1\.2;
+}
+
+.h7 {
+	@extend .h;
+	@extend .font-size-14;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.h8 {
+	@extend .h;
+	@extend .font-size-12;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.h9 {
+	@extend .h;
+	@extend .font-size-10;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+.h10 {
+	@extend .h;
+	@extend .font-size-8;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.btn {
+	@extend .font-weight-700;
+	@extend .font-space-grotesk;
+	color: var(--color-indigo-500);
+}
+
+.btn1 {
+	@extend .btn;
+	@extend .font-size-24;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.btn2 {
+	@extend .btn;
+	@extend .font-size-20;
+	@extend .letter-spacing-0;
+	@extend .line-height-1\.2;
+}
+
+.btn3 {
+	@extend .btn;
+	@extend .font-size-18;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.btn4,
+button {
+	@extend .btn;
+	@extend .font-size-16;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.btn5 {
+	@extend .btn;
+	@extend .font-size-14;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.btn6 {
+	@extend .btn;
+	@extend .font-size-12;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.text {
+	@extend .font-weight-400;
+	@extend .font-kumbh-sans;
+	@extend .line-height-1\.5;
+	@extend .letter-spacing-0\.5;
+}
+
+.text-lg {
+	@extend .text;
+	@extend .font-size-18;
+}
+
+.text-md,
+p {
+	@extend .text;
+	@extend .font-size-16;
+}
+
+.text-sm {
+	@extend .text;
+	@extend .font-size-14;
+}
+
+.text-xs {
+	@extend .text;
+	@extend .font-size-12;
+}
+
+.text-m {
+	@extend .font-weight-400;
+	@extend .font-margarine;
+	color: var(--color-indigo-500);
+}
+
+.text-m1 {
+	@extend .text-m;
+	@extend .font-size-24;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}
+
+.text-m2 {
+	@extend .text-m;
+	@extend .font-size-20;
+	@extend .letter-spacing-0\.5;
+	@extend .line-height-1\.5;
+}

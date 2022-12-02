@@ -1,0 +1,72 @@
+.shadow-modal {
+	box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-yellow-btn {
+	box-shadow: 4px 4px 6px 0px #c8c8c880;
+}
+
+.shadow-indigo-btn {
+	box-shadow: 0px 3px 5px 0px #000000b2;
+}
+
+.shadow-violet-btn {
+	box-shadow: 0px 1.5px 3px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-big-btn {
+	box-shadow: 8px 8px 30px #000000;
+}
+
+.shadow-form {
+	box-shadow: -1.84047px 2.45396px 12.2698px #ccc8c8;
+}
+
+.shadow-card {
+	box-shadow: 0px 3px 12px #ccc8c8;
+}
+
+.shadow-card-small {
+	box-shadow: 0px 2px 4px 0px #ccc8c8b2;
+}
+
+.shadow-card-black {
+	box-shadow: 8px 8px 8px 2px #00000066;
+}
+
+.shadow-icon {
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-flag {
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-flag-lift {
+	box-shadow: 0px 5px 5px #eddaff;
+}
+
+.shadow-dropdown-art-assets {
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-about-page-fonts {
+	box-shadow: 0px 2px 4px 0px #0000001f;
+}
+
+:root {
+	--shadow-modal: 5px 10px 30px rgba(0, 0, 0, 0.3);
+	--shadow-yellow-btn: 4px 4px 6px 0px #c8c8c880;
+	--shadow-indigo-btn: 0px 3px 5px 0px #000000b2;
+	--shadow-violet-btn: 0px 1.5px 3px rgba(0, 0, 0, 0.3);
+	--shadow-big-btn: 8px 8px 30px #000000;
+	--shadow-form: -1.84047px 2.45396px 12.2698px #ccc8c8;
+	--shadow-card: 0px 3px 12px #ccc8c8;
+	--shadow-card-small: 0px 2px 4px 0px #ccc8c8b2;
+	--shadow-card-black: 8px 8px 8px 2px #00000066;
+	--shadow-icon: 0px 2px 3px rgba(0, 0, 0, 0.25);
+	--shadow-flag: 0px 2px 3px rgba(0, 0, 0, 0.25);
+	--shadow-flag-lift: 0px 5px 5px #eddaff;
+	--shadow-dropdown-art-assets: 2px 4px 15px 0px rgba(0, 0, 0, 0.15);
+	--shadow-about-page-fonts: 0px 2px 4px 0px #0000001f;
+}
