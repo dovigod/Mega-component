@@ -1,23 +1,18 @@
 import styled from 'styled-components';
 import {useEffect , useState} from 'react';
 import {AdaptedPieChartData, PieChartProps} from '@/types'
-const degToRad = (deg : number) => {
-    return deg * (Math.PI/180)
-}
-
+import {degToRad} from '@/utils'
 const moveToFront = (id : string) =>{
     const portion = document.querySelector(id)
     portion?.parentNode?.appendChild(portion);    
 }
 const caculateTextCoordinate = (accumulatedPercent : number , percent : number) => {
-
     let rotationDeg =  360 * (accumulatedPercent - (percent/2));
     if(rotationDeg <= 90){
         rotationDeg = 90 - rotationDeg
     }else if(rotationDeg <= 180 && rotationDeg > 90){
         rotationDeg = 360 - rotationDeg + 90;
     }else if(rotationDeg > 180 && rotationDeg <= 270){
-       
         rotationDeg = 270 - rotationDeg + 180
     }else{
         rotationDeg = 360 - rotationDeg + 90
@@ -30,7 +25,6 @@ const caculateTextCoordinate = (accumulatedPercent : number , percent : number) 
         dx : x_offset,
         dy : -y_offset
     }
-
 }
 
 const PieChart = ({data , ...rest} : PieChartProps) => {
