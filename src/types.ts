@@ -1,5 +1,7 @@
 import React from 'react';
 import { CSSObject } from 'styled-components';
+
+//heading
 export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 	variant: string;
 	as?: string;
@@ -7,6 +9,8 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 	color?: string;
 	margin?: string;
 }
+
+//barchart
 
 export interface BarChartColumnProps {
 	rows: number;
@@ -48,4 +52,24 @@ export interface ChartProps {
 	xLabelSpacing?: string;
 	yLabelSpacing?: string;
 	yLabelUnit?: string;
+}
+
+
+
+
+//piechart
+
+export type PieChartData = {
+	value : number;
+	color : string;
+}
+
+export type AdaptedPieChartData ={
+	color : string,
+	acc : number,
+	share : number
+}
+
+export interface PieChartProps extends React.HTMLAttributes<SVGElement>{
+	data : Array<PieChartData>
 }
