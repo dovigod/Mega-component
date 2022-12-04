@@ -21,7 +21,6 @@ const caculateTextCoordinate = (accumulatedPercent : number , percent : number) 
         rotationDeg = 270 - rotationDeg + 180
     }else{
         rotationDeg = 360 - rotationDeg + 90
-        console.log(rotationDeg)
     }
     const rad = degToRad(rotationDeg);
 
