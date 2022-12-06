@@ -44,4 +44,5 @@ RUN npm install
 # expose centain port to our local system
 EXPOSE 3000
 # to run 
+# pr
 CMD ["npm", "run", "dev"]
